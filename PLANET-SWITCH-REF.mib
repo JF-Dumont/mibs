@@ -1,0 +1,136 @@
+PLANET-REF-MIB DEFINITIONS ::= BEGIN
+
+-- Planet Reference MIB
+-- Copyright Planet  All rights reserved.
+
+-- This SNMP Management Information Specification
+-- embodies Planet's confidential and proprietary
+-- intellectual property.  Planet  retains all title
+-- and ownership in the Specification including any revisions.
+
+-- This Specification is supplied "AS IS", Planet
+-- makes no warranty, either expressed or implied,
+-- as to the use, operation, condition, or performance of the
+-- Specification.
+
+
+IMPORTS
+    MODULE-IDENTITY                     FROM SNMPv2-SMI
+    TEXTUAL-CONVENTION                  FROM SNMPv2-TC
+    enterprises                         FROM RFC1155-SMI;
+    
+    planet MODULE-IDENTITY
+        LAST-UPDATED "200311210000Z" -- 21 Nov 2003 12:00:00 GMT
+        ORGANIZATION ""
+        CONTACT-INFO
+          ""
+        DESCRIPTION
+          ""
+           
+        -- Revision history.	  
+        REVISION
+          "200311210000Z" -- 21 Nov 2003 12:00:00 GMT
+        DESCRIPTION
+          "Revisions made for new release."
+        REVISION
+          "200302061200Z" -- 6 February 2003 12:00:00 GMT
+        DESCRIPTION
+          "Updated for release"
+          
+    ::= {  enterprises 10456 }
+
+    
+-- New definitions
+ products                  OBJECT IDENTIFIER ::= { planet 1 }
+ industrial                OBJECT IDENTIFIER ::= { planet 9 }
+ mgmtsw                    OBJECT IDENTIFIER ::= { products 1 }
+ GSD-800S                  OBJECT IDENTIFIER ::= { products 1459 } 
+ WGSW-2840                 OBJECT IDENTIFIER ::= { products 1460 } 
+ WSW-2401A                 OBJECT IDENTIFIER ::= { products 1461 }
+ WSD-800                   OBJECT IDENTIFIER ::= { products 1462 }
+ WGSW-5240                 OBJECT IDENTIFIER ::= { products 1463 } 
+ GSW-1602SF                OBJECT IDENTIFIER ::= { products 1464 } 
+ GSW-2404SF                OBJECT IDENTIFIER ::= { products 1465 }
+ WGSD-1022                 OBJECT IDENTIFIER ::= { products 1466 }  
+ GSW-2416SF                OBJECT IDENTIFIER ::= { products 1467 }
+ WGS3-2820	           OBJECT IDENTIFIER ::= { products 1468 }
+ WGS3-5220	           OBJECT IDENTIFIER ::= { products 1469 }
+ WGS3-24000	           OBJECT IDENTIFIER ::= { products 1470 }
+ WGS3-2840	           OBJECT IDENTIFIER ::= { products 1471 }
+ WGSD-8000	           OBJECT IDENTIFIER ::= { products 1472 }
+ WGSW-24020                OBJECT IDENTIFIER ::= { products 1473 }  
+ WGSW-48040	           OBJECT IDENTIFIER ::= { products 1474 }
+ FGSW-2620VM               OBJECT IDENTIFIER ::= { products 1475 }
+ GSD-802S                  OBJECT IDENTIFIER ::= { products 1476 }
+ GSD-802PS                 OBJECT IDENTIFIER ::= { products 1477 }
+ WGSW-2820                 OBJECT IDENTIFIER ::= { products 1478 }
+ WGSW-5220                 OBJECT IDENTIFIER ::= { products 1479 }
+ WGSD-910                  OBJECT IDENTIFIER ::= { products 1480 }  
+ VC-810S                   OBJECT IDENTIFIER ::= { products 1481 }  
+ SGSD-1022                 OBJECT IDENTIFIER ::= { products 1482 }  		
+ SGSD-1022P                OBJECT IDENTIFIER ::= { products 1483 }            
+ SGSW-2840                 OBJECT IDENTIFIER ::= { products 1484 }  
+ SGSW-2840P                OBJECT IDENTIFIER ::= { products 1485 }   
+ WGS3-24240                OBJECT IDENTIFIER ::= { products 1486 }  
+ FGSW-2624SF               OBJECT IDENTIFIER ::= { products 1487 }  
+ WGSW-24040                OBJECT IDENTIFIER ::= { products 1488 }  
+ SGSW-24040                OBJECT IDENTIFIER ::= { products 1489 }
+ WGSD-1022C                OBJECT IDENTIFIER ::= { products 1490 }
+ SGSW-2840P4               OBJECT IDENTIFIER ::= { products 1491 }
+ SGSW-24040P               OBJECT IDENTIFIER ::= { products 1492 }
+ SGSW-24040P4              OBJECT IDENTIFIER ::= { products 1493 }
+ WGSW-24240                OBJECT IDENTIFIER ::= { products 1494 }
+ SGSW-24240                OBJECT IDENTIFIER ::= { products 1495 }
+ FGSW-2620PVM              OBJECT IDENTIFIER ::= { products 1496 }
+ FGSW-2612PVM              OBJECT IDENTIFIER ::= { products 1497 }
+ FGSD-1022                 OBJECT IDENTIFIER ::= { products 1498 }
+ FGSD-1022P                OBJECT IDENTIFIER ::= { products 1499 }
+ XGS3-24040                OBJECT IDENTIFIER ::= { products 1500 }
+ WGSD-8020                 OBJECT IDENTIFIER ::= { products 1502 }
+ IGSW-2840                 OBJECT IDENTIFIER ::= { products 1504 }
+ SGSW-24040HP              OBJECT IDENTIFIER ::= { products 1511 }
+ WGSD-10020                OBJECT IDENTIFIER ::= { products 1514 }
+ WGSD-10020HP              OBJECT IDENTIFIER ::= { products 1515 } 
+ XGS3-24042                OBJECT IDENTIFIER ::= { products 1516 }
+ WGSW-28040P4              OBJECT IDENTIFIER ::= { products 1517 }  
+ MGSW-24160F               OBJECT IDENTIFIER ::= { products 1518 }
+ XGSW-28040                OBJECT IDENTIFIER ::= { products 1519 }
+ XGS3-24242                OBJECT IDENTIFIER ::= { products 1520 }
+ WGSW-20160HP              OBJECT IDENTIFIER ::= { products 1521 }
+ ISW-1022MT                OBJECT IDENTIFIER ::= { industrial  6 }
+ IGS-8044MT                OBJECT IDENTIFIER ::= { industrial 12 }
+ IGS-10020MT               OBJECT IDENTIFIER ::= { industrial 13 }
+ IGS-10080MFT              OBJECT IDENTIFIER ::= { industrial 14 }
+ IGS-10020HPT              OBJECT IDENTIFIER ::= { industrial 15 }
+  IGS-10020PT                OBJECT IDENTIFIER ::= { industrial 16 }
+ 
+ 
+ 
+-- New Textual Conventions
+AgentPortMask ::= TEXTUAL-CONVENTION
+   STATUS  current
+   DESCRIPTION
+       "Each octet within this value specifies a set of eight
+        ports, with the first octet specifying ports 1 through
+        8, the second octet specifying ports 9 through 16, etc.
+        Within each octet, the most significant bit represents
+        the lowest numbered port, and the least significant bit
+        represents the highest numbered port.  Thus, each port
+        of the bridge is represented by a single bit within the
+        value of this object.  If that bit has a value of '1'
+        then that port is included in the set of ports; the port
+        is not included if its bit has a value of '0'
+             
+        When setting this value, the system will ignore 
+        configuration for ports not between the first and last 
+        valid ports.  Configuration of any port numbers between 
+        this range that are not valid ports return a failure 
+        message, but will still apply configuration for valid 
+        ports."
+   SYNTAX  OCTET STRING
+
+-- Object identifiers for use in model identification
+
+--wgs3_24000         OBJECT IDENTIFIER ::= { enterprises 10456 6 1470 1 }
+
+END
